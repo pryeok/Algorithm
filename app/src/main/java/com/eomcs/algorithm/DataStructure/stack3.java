@@ -1,32 +1,51 @@
-import java.util.Scanner;
+package com.eomcs.algorithm.DataStructure;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Stack;
 
 public class stack3 {
-  public static void main(String[] args) {
 
-    Scanner sc = new Scanner(System.in);
-    int count = Integer.parseInt(sc.nextLine()); 
+  public static void main(String[] args) throws IOException {
 
-    StringBuilder result = new StringBuilder();
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    Stack<Character> stack = new Stack<Character>();
+    String input = "";
 
-    for (int i = 0; i < count; i++) {
-      String sentence = sc.nextLine() + "\n"; 
-      Stack stack = new Stack<>();
+    String nStr = br.readLine();   // scanner(System.in)
+    int n = Integer.parseInt(nStr);
 
-      for (int j = 0; j < sentence.length(); j++) {
-        if (sentence.charAt(j) == ' ' || sentence.charAt(j) == '\n') { 
-          while (!stack.empty()) { 
-            result.append(stack.pop()); 
+    for (int i = 0; i < n; i++) {
+      input = br.readLine();
+      input += "\n";
+      StringBuilder sb = new StringBuilder("");
+
+      for (int j = 0; j < input.length(); j++) {
+
+        if (input.charAt(j) == ' ' || input.charAt(j) == '\n') {
+          while (!stack.isEmpty()) {
+            sb.append(stack.peek());
+            stack.pop();
           }
-          result.append(sentence.charAt(j)); 
-        } 
-        else {
-          stack.add(sentence.charAt(j)); 
+          if (input.charAt(j) == ' ') {
+            sb.append(input.charAt(j));
+          }
+
+        } else {
+          stack.push(input.charAt(j));
         }
       }
+
+      bw.write(sb.toString() + "\n");
+
     }
 
-    System.out.print(result.toString());
-
+    br.close();
+    bw.flush();
+    bw.close();
   }
+
 }
