@@ -8,42 +8,43 @@ public class stack {
 
   public static void main(String[] args) {
 
-    Scanner in = new Scanner(System.in);
-    StringBuilder sb = new StringBuilder();
+    try (Scanner in = new Scanner(System.in)) {
+      StringBuilder sb = new StringBuilder();
 
-    int N = in.nextInt();
+      int N = in.nextInt();
 
-    stack = new int[N];
+      stack = new int[N];
 
-    for(int i = 0; i < N; i++) {
+      for(int i = 0; i < N; i++) {
 
-      String str = in.next();
+        String str = in.next();
 
-      switch (str) {
+        switch (str) {
 
-        case "push":
-          push(in.nextInt());
-          break;
+          case "push":
+            push(in.nextInt());
+            break;
 
-        case "pop":
-          sb.append(pop()).append('\n');
-          break;
+          case "pop":
+            sb.append(pop()).append('\n');
+            break;
 
-        case "size":
-          sb.append(size()).append('\n');
-          break;
+          case "size":
+            sb.append(size()).append('\n');
+            break;
 
-        case "empty":
-          sb.append(empty()).append('\n');
-          break;
+          case "empty":
+            sb.append(empty()).append('\n');
+            break;
 
-        case "top":
-          sb.append(top()).append('\n');
-          break;
+          case "top":
+            sb.append(top()).append('\n');
+            break;
+        }
+
       }
-
+      System.out.println(sb);
     }
-    System.out.println(sb);
   }
 
   public static void push(int item) {
